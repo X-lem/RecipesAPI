@@ -2,9 +2,14 @@
 <html>
 <head>
   <title>Recipe Book!</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
   <body>
     <!-- Dust Syntax -->
     {+body /}
+
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
   </body>
 </html>
