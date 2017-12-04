@@ -7,11 +7,11 @@ var express = require('express'),
     app = express();
 
 var conString = "postgres://simpleuser:pizel71@localhost/RecipleBook";
-app.engine('dust',cons.dust);
+app.engine('dust', cons.dust);
 
 // Set default ext .dust
 app.set('view engine', 'dust');
-app.set('views' __dirname + '/views');
+app.set('views', __dirname + '/views');
 
 // Public Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,3 +19,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
+
+// Server
+app.listen(3000, function () {
+  console.log('Server working!');
+});
