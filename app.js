@@ -6,7 +6,8 @@ var express = require('express'),
     pg = require('pg'),
     app = express();
 
-var conString = "postgres://simpleuser:pizel71@localhost/RecipleBook";
+var conString = "postgres://simpleuser:pizel71@localhost/ip:8000/RecipeBook";
+
 app.engine('dust', cons.dust);
 
 // Set default ext .dust
@@ -21,7 +22,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 app.get('/', function(req, res) {
-  res.render('index');
+
+  // Connection
+  pg.connect(conString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM recipes', function(err, result){
+      if(err) {
+        return console.error('error running query', err);
+      }
+
+      res.render('index', {recipes: result.rows});
+      done();
+    });
+  });
+
 });
 
 
